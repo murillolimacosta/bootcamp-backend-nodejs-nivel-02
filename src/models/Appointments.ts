@@ -1,23 +1,15 @@
-import { da } from 'date-fns/locale';
-import { uuid } from 'uuidv4';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-interface AppointmentCTO {
-    provider: string;
-    date: Date;
-}
-
+@Entity('appointments')
 class Appointment {
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Column()
     provider: string;
 
+    @Column('timestamp with time zone')
     date: Date;
-
-    constructor({ provider, date }: AppointmentCTO) {
-        this.id = uuid();
-        this.provider = provider;
-        this.date = date;
-    }
 }
 
 export default Appointment;
